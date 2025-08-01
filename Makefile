@@ -1,8 +1,22 @@
-prog : main.o math.o
-	g++ -o prog main.o math.o
+CXX = g++
+CXXFLAGS = -Wextra -Werror -Wall
+EXEC = prog
+SRC = $(wildcard *.cpp)
+OBJ = $(SRC:.cpp=.o)
 
-main.o : main.cpp
-	g++ -o main.o -c main.cpp -Wextra -Werror -Wall
+all : $(EXEC)
 
-math.o : math.cpp
-	g++ -o math.o -c math.cpp -Wextra -Werror -Wall
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+$(EXEC) : $(OBJ)
+	$(CXX) -o $@ $^
+
+clean :
+	rm -rf *.o
+
+mrproper : clean
+	rm -rf $(EXEC)
+
+tar : main.cpp math.cpp
+	tar -cf exemple.tar main.cpp math.cpp
