@@ -20,6 +20,6 @@ protected:
 
 };
 
-int ajouterDeux(int nb);
+int ajouterDeux(int *nb);
 
 #endif /* math_hpp */

@@ -1,4 +1,4 @@
-//#include "math.hpp"
+#include "math.hpp"
 #include <iostream>
 
 using namespace std;
@@ -6,9 +6,8 @@ using namespace std;
 int main ()
 {
     int test = 5;
-    test++;
-    string salut ("salut");
-    cout << salut << endl;
-    cout << test << endl;
+    ajouterDeux(&test);
+    cout << ajouterDeux(&test) << endl;
+
     return 0;
 }

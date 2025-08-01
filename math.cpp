@@ -10,8 +10,8 @@
 
 math::math()  {}
 math::~math() {}
-int ajouterDeux(int nb)
+int ajouterDeux(int *nb)
 {
-    int valeur (nb + 2);
-    return valeur;
+    *nb = (*nb + 2);
+    return *nb;
 }
