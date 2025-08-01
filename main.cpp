@@ -4,14 +4,14 @@ using namespace std;
 int main()
 {
     Personnage david, goliath;
-	Arme hache("Double hache", 40);
+	Arme *hache = new Arme("Double hache", 40);
 
     goliath.attack(david);
     david.getPV(20);
     goliath.attack(david);
     david.attack(goliath);
 
-	goliath.changeArme(&hache);
+	goliath.changeArme(hache);
     goliath.attack(david);
 
 	cout << "David" << endl;

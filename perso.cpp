@@ -14,7 +14,7 @@ Personnage::Personnage()
 {
     m_vie = 100;
     m_mana = 100;
-	m_arme = new Arme;
+	m_arme = new Arme("Epee Rouillee", 10);
 }
 
 Personnage::Personnage(Personnage const &autre)
@@ -48,6 +48,7 @@ void Personnage::getPV(int pv)
 
 void Personnage::changeArme(Arme *arme)
 {
+	delete m_arme;
 	m_arme = arme;
 }
 
@@ -62,8 +63,11 @@ void Personnage::afficherEtat()
 	cout << "Mana : " << m_mana << endl;
 	m_arme->afficher();
 }
-
+/*
 int main()
 {
+	Personnage *toto = new Personnage();
+	delete toto;
     return 0;
 }
+*/
