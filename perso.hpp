@@ -23,14 +23,14 @@ public:
     void getDegats(int degats);
     void attack(Personnage &cible);
     void getPV(int pv);
-	void changeArme(Arme &arme);
+	void changeArme(Arme *arme);
     bool isAlive() const;
 	void afficherEtat();
 
 private:
     int m_vie;
     int m_mana;
-	Arme m_arme;
+	Arme *m_arme;
 };
 
 

@@ -1,6 +1,6 @@
 EXEC = prog
 CXX = g++
-CXXFLAGS = -Werror -Wextra -Wall
+CXXFLAGS = -Werror -Wextra -Wall -g
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 

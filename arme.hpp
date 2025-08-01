@@ -21,6 +21,7 @@ private:
 public:
 	Arme();
 	Arme(std::string nom,int degats);
+	~Arme();
 	void		changer(std::string nom, int degats);
 	void		afficher() const;
 	std::string	getNom() const;

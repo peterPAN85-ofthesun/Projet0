@@ -18,6 +18,11 @@ Arme::Arme(std::string nom, int degats)
 	m_degats = degats;
 }
 
+Arme::~Arme()
+{
+
+}
+
 void Arme::changer(string nom, int degats)
 {
 	m_nom = nom;
@@ -39,3 +44,18 @@ int Arme::getDegats() const
 {
 	return (m_degats);
 }
+/*
+int main()
+{
+	Arme hache;
+	Arme epee("Epee", 10);
+	Arme *foureau = new Arme("masse", 15);
+	string nom = epee.getNom();
+	int degat = epee.getDegats();
+	hache.changer(nom, degat);
+	foureau->afficher();
+	delete foureau;
+
+	return 0;
+}
+*/

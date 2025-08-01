@@ -11,7 +11,7 @@ int main()
     goliath.attack(david);
     david.attack(goliath);
 
-	goliath.changeArme(hache);
+	goliath.changeArme(&hache);
     goliath.attack(david);
 
 	cout << "David" << endl;

@@ -14,7 +14,7 @@ Personnage::Personnage()
 {
     m_vie = 100;
     m_mana = 100;
-	m_arme.changer("Epee Rouillee",10);
+	m_arme = new Arme;
 }
 
 Personnage::Personnage(Personnage const &autre)
@@ -26,7 +26,7 @@ Personnage::Personnage(Personnage const &autre)
 
 Personnage::~Personnage()
 {
-
+	delete m_arme;
 }
 
 void Personnage::getDegats(int degats)
@@ -36,7 +36,7 @@ void Personnage::getDegats(int degats)
 
 void Personnage::attack(Personnage &cible)
 {
-	cible.getDegats(m_arme.getDegats());
+	cible.getDegats(m_arme->getDegats());
 }
 
 void Personnage::getPV(int pv)
@@ -46,9 +46,9 @@ void Personnage::getPV(int pv)
         m_vie = 100;
 }
 
-void Personnage::changeArme(Arme &arme)
+void Personnage::changeArme(Arme *arme)
 {
-	m_arme.changer(arme.getNom(),arme.getDegats());
+	m_arme = arme;
 }
 
 bool Personnage::isAlive() const
@@ -60,11 +60,10 @@ void Personnage::afficherEtat()
 {
 	cout << "Vie : " << m_vie << endl;
 	cout << "Mana : " << m_mana << endl;
-	m_arme.afficher();
+	m_arme->afficher();
 }
-/*
+
 int main()
 {
     return 0;
 }
-*/
