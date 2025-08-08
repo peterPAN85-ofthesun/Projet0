@@ -6,7 +6,7 @@
 class Vehicule {
 public:
   Vehicule();
-  void affiche() const;
+  virtual void affiche() const;
 
 protected:
   int m_prix;

@@ -6,7 +6,7 @@
 class Voiture : public Vehicule {
 public:
   Voiture();
-  void affiche() const;
+  virtual void affiche() const;
 
 private:
   int m_portes;

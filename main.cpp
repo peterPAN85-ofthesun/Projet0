@@ -4,14 +4,16 @@
 
 using namespace std;
 
+void presenter(Vehicule v) { v.affiche(); }
+
 int main() {
   Vehicule v;
   Voiture voi;
   Moto m;
 
-  v.affiche();
-  voi.affiche();
-  m.affiche();
+  presenter(v);
+  presenter(voi);
+  presenter(m);
 
   return 0;
 }
