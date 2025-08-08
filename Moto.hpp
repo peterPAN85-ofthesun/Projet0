@@ -6,6 +6,8 @@
 class Moto : public Vehicule {
 public:
   Moto();
+  Moto(int const prix, double const vitesse);
+  ~Moto();
   void affiche() const;
 
 private:

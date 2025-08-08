@@ -6,6 +6,7 @@
 class Voiture : public Vehicule {
 public:
   Voiture();
+  Voiture(int const prix, int const portes);
   ~Voiture();
   void affiche() const;
 

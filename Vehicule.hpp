@@ -6,6 +6,7 @@
 class Vehicule {
 public:
   Vehicule();
+  Vehicule(int const prix);
   virtual ~Vehicule();
   virtual void affiche() const;
 

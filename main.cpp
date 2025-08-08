@@ -2,17 +2,25 @@
 #include "Vehicule.hpp"
 #include "Voiture.hpp"
 
+#include <vector>
+
 using namespace std;
 
 void presenter(Vehicule const &v) { v.affiche(); }
 
 int main() {
-  Vehicule *v(0);
-  v = new Voiture;
+  vector<Vehicule *> listeVehicules;
 
-  v->affiche();
+  listeVehicules.push_back(new Voiture(15000, 5));
+  listeVehicules.push_back(new Voiture(12000, 3));
+  listeVehicules.push_back(new Moto(2000, 212.5));
 
-  delete v;
+  listeVehicules[0]->affiche();
+  listeVehicules[2]->affiche();
 
+  for (long unsigned int i = 0; i < listeVehicules.size(); i++) {
+    delete listeVehicules[i];
+    listeVehicules[i] = 0;
+  }
   return 0;
 }
