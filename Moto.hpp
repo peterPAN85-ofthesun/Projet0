@@ -6,7 +6,7 @@
 class Moto : public Vehicule {
 public:
   Moto();
-  virtual void affiche() const;
+  void affiche() const;
 
 private:
   double m_vitesse;

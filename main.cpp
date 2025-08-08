@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void presenter(Vehicule v) { v.affiche(); }
+void presenter(Vehicule const &v) { v.affiche(); }
 
 int main() {
   Vehicule v;
