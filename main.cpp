@@ -1,8 +1,17 @@
-#include "Perso.hpp"
+#include "Moto.hpp"
+#include "Vehicule.hpp"
+#include "Voiture.hpp"
 
 using namespace std;
 
 int main() {
-  Personnage *toto = new Personnage();
-  toto->recevoirDegat(5);
+  Vehicule v;
+  Voiture voi;
+  Moto m;
+
+  v.affiche();
+  voi.affiche();
+  m.affiche();
+
+  return 0;
 }

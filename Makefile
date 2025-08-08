@@ -1,7 +1,6 @@
 EXEC = prog
 CXX = g++
 CXXFLAGS = -Werror -Wall -Wextra
-
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 
@@ -11,10 +10,10 @@ all : $(EXEC)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(EXEC) : $(OBJ)
-	$(CXX) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean : 
-	rm -rf *.o
+	rm -rf ./*.o
 
-mrpoper : $(EXEC)
+mrproper : 
 	rm -rf $(EXEC)
