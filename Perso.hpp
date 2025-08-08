@@ -1,6 +1,5 @@
 #ifndef PERSO_HPP
 #define PERSO_HPP
-
 #include <iostream>
 #include <string>
 
@@ -15,4 +14,4 @@ private:
   std::string m_nom;
 };
 
-#endef
+#endif

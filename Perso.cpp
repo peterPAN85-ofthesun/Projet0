@@ -2,9 +2,11 @@
 
 Personnage::Personnage() {
   m_vie = 100;
-  m_nom = "Claude"
+  m_nom = "Claude";
 }
 
-void recevoirDegat(int degats) { m_vie -= degats; }
+void Personnage::recevoirDegat(int degats) { m_vie -= degats; }
 
-void coupDePoing(Personnage &cible) const { cible.recevoirDegat(10); }
+void Personnage::coupDePoing(Personnage &cible) const {
+  cible.recevoirDegat(10);
+}
