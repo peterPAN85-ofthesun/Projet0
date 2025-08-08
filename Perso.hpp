@@ -15,4 +15,4 @@ private:
   std::string m_nom;
 };
 
-#endef
+#endif
