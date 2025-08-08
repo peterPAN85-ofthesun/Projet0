@@ -7,13 +7,12 @@ using namespace std;
 void presenter(Vehicule const &v) { v.affiche(); }
 
 int main() {
-  Vehicule v;
-  Voiture voi;
-  Moto m;
+  Vehicule *v(0);
+  v = new Voiture;
 
-  presenter(v);
-  presenter(voi);
-  presenter(m);
+  v->affiche();
+
+  delete v;
 
   return 0;
 }

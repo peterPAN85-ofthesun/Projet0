@@ -6,6 +6,7 @@
 class Vehicule {
 public:
   Vehicule();
+  virtual ~Vehicule();
   virtual void affiche() const;
 
 protected:
