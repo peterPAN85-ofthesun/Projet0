@@ -13,6 +13,8 @@ int main() {
 
   for (long unsigned int i = 0; i < figures.size(); i++) {
     figures[i]->affiche();
+    cout << "Perimetre : " << figures[i]->perimetre() << endl;
+    cout << "Aire : " << figures[i]->aire() << endl;
     delete figures[i];
     figures[i] = 0;
   }
