@@ -1,5 +1,4 @@
 #include "Figure.hpp"
-#include <cwchar>
 #include <vector>
 
 using namespace std;
