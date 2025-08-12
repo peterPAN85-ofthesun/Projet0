@@ -1,30 +1,24 @@
+#include "Foncteur.hpp"
 #include <iostream>
-
-#include "Fraction.hpp"
-
+#include <map>
+#include <string>
 using namespace std;
 
-int main()
+int main() {
+  map<string, double, CompareLongueur>
+      poids; // Une table qui associe le nom d'un animal à son poids
 
-{
+  // On ajoute les poids de quelques animaux
+  poids["souris"] = 0.05;
 
-  Fraction a(4, 5); // Déclare une fraction valant 4/5
+  poids["tigre"] = 200;
+  poids["chat"] = 3;
+  poids["elephant"] = 10000;
 
-  Fraction b(2); // Déclare une fraction valant 2/1 (ce qui vaut 2)
-
-  Fraction c; // Déclare une fractions valant 0
-
-  c = a * b; // Calcule 4/5 * 2/1 = 8/5
-
-  cout << a << " * " << b << " = " << c << endl;
-
-  if (a == b)
-
-    cout << "a est egal a b." << endl;
-
-  else
-
-    cout << "a n’est pas egal a b." << endl;
-
+  // Et on parcourt la table en affichant le nom et le poids
+  for (map<string, double>::iterator it = poids.begin(); it != poids.end();
+       ++it) {
+    cout << it->first << " pese " << it->second << " kg." << endl;
+  }
   return 0;
 }
