@@ -1,103 +1,113 @@
------------------------------------
+# Raylib-Quickstart
+A simple cross platform template for setting up a project with the bleeding edge raylib code.
+Works with C or C++.
 
-_DISCLAIMER:_
+## Supported Platforms
+Quickstart supports the main 3 desktop platforms:
+* Windows
+* Linux
+* MacOS
 
-Welcome to **raylib game template**!
+# Naming projects
+Do not name your game project 'raylib', it will conflict with the raylib library.
 
-This template provides a base structure to start developing a small raylib game in plain C. The repo is also pre-configured with a default `LICENSE` (zlib/libpng) and a `README.md` (this one) to be properly filled by users. Feel free to change the LICENSE as required.
+# VSCode Users (all platforms)
+*Note* You must have a compiler toolchain installed in addition to vscode.
 
-All the sections defined by `$(Data to Fill)` are expected to be edited and filled properly. It's recommended to delete this disclaimer message after editing this `README.md` file.
+* Download the quickstart
+* Rename the folder to your game name
+* Open the folder in VSCode
+* Run the build task ( CTRL+SHIFT+B or F5 )
+* You are good to go
 
-This template has been created to be used with raylib (www.raylib.com) and it's licensed under an unmodified zlib/libpng license.
+# Windows Users
+There are two compiler toolchains available for windows, MinGW-W64 (a free compiler using GCC), and Microsoft Visual Studio
+## Using MinGW-W64
+* Double click the `build-MinGW-W64.bat` file
+* CD into the folder in your terminal
+  * if you are usiing the W64devkit and have not added it to your system path environment variable, you must use the W64devkit.exe terminal, not CMD.exe
+  * If you want to use cmd.exe or any other terminal, please make sure that gcc/mingw-W64 is in your path environment variable.
+* run `make`
+* You are good to go
 
-_Copyright (c) 2014-2025 Ramon Santamaria ([@raysan5](https://twitter.com/raysan5))_
+### Note on MinGW-64 versions
+Make sure you have a modern version of MinGW-W64 (not mingw).
+The best place to get it is from the W64devkit from
+https://github.com/skeeto/w64devkit/releases
+or the version installed with the raylib installer
+#### If you have installed raylib from the installer
+Make sure you have added the path
 
------------------------------------
-## Getting Started with this template
+`C:\raylib\w64devkit\bin`
 
-#### Linux
-When setting up this template on linux for the first time, install the dependencies from this page:
-([Working on GNU Linux](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux))
+To your path environment variable so that the compiler that came with raylib can be found.
 
-You can use this templates in some ways. Using Visual Studio, using CMake or make your own build setup. This repository come with Visual Studio and CMake already setuped.
+DO NOT INSTALL ANOTHER MinGW-W64 from another source such as msys2, you don't need it.
 
-Chose one of the follow setup, that fit in you development enviroment.
+## Microsoft Visual Studio
+* Run `build-VisualStudio2022.bat`
+* double click the `.sln` file that is generated
+* develop your game
+* you are good to go
 
-### Visual Studio
+# Linux Users
+* CD into the build folder
+* run `./premake5 gmake`
+* CD back to the root
+* run `make`
+* you are good to go
 
-- After extracting the zip, the parent folder `raylib-game-template` should exist in the same directory as `raylib` itself.  So your file structure should look like this:
-    - Some parent directory
-        - `raylib`
-            - the contents of https://github.com/raysan5/raylib
-        - `raylib-game-template`
-            - this `README.md` and all other raylib-game-template files
-- If using Visual Studio, open projects/VS2022/raylib-game-template.sln
-- Select on `raylib_game` in the solution explorer, then in the toolbar at the top, click `Project` > `Set as Startup Project`
-- Now you're all set up!  Click `Local Windows Debugger` with the green play arrow and the project will run.
+# MacOS Users
+* CD into the build folder
+* run `./premake5.osx gmake`
+* CD back to the root
+* run `make`
+* you are good to go
 
-### CMake
+# Output files
+The built code will be in the bin dir
 
-- Extract the zip of this project
-- Type the follow command:
+# Working directories and the resources folder
+The example uses a utility function from `path_utils.h` that will find the resources dir and set it as the current working directory. This is very useful when starting out. If you wish to manage your own working directory you can simply remove the call to the function and the header.
 
-```sh
-cmake -S . -B build
-```
+# Changing to C++
+Simply rename `src/main.c` to `src/main.cpp` and re-run the steps above and do a clean build.
 
-> if you want with debug symbols put the flag `-DCMAKE_BUILD_TYPE=Debug`
+# Using your own code
+Simply remove `src/main.c` and replace it with your code, and re-run the steps above and do a clean build.
 
-- After CMake config your project build:
+# Building for other OpenGL targets
+If you need to build for a different OpenGL version than the default (OpenGL 3.3) you can specify an OpenGL version in your premake command line. Just modify the bat file or add the following to your command line
 
-```sh
-cmake --build build
-```
+## For OpenGL 1.1
+`--graphics=opengl11`
 
-- Inside the build folder are another folder (named the same as the project name on CMakeLists.txt) with the executable and resources folder.
-- In order for resources to load properly, cd to `src` and run the executable (`../build/${PROJECT_NAME}/${PROJECT_NAME}`) from there.
+## For OpenGL 2.1
+`--graphics=opengl21`
 
-- cmake will automatically download a current release of raylib but if you want to use your local version you can pass `-DFETCHCONTENT_SOURCE_DIR_RAYLIB=<dir_with_raylib>` 
+## For OpenGL 4.3
+`--graphics=opengl43`
 
-## $(Game Title)
+## For OpenGLES 2.0
+`--graphics=opengles2`
 
-![$(Game Title)](screenshots/screenshot000.png "$(Game Title)")
+## For OpenGLES 3.0
+`--graphics=opengles3`
 
-### Description
+# License
+Copyright (c) 2020-2025 Jeffery Myers
 
-$(Your Game Description)
+This software is provided "as-is", without any express or implied warranty. In no event 
+will the authors be held liable for any damages arising from the use of this software.
 
-### Features
+Permission is granted to anyone to use this software for any purpose, including commercial 
+applications, and to alter it and redistribute it freely, subject to the following restrictions:
 
- - $(Game Feature 01)
- - $(Game Feature 02)
- - $(Game Feature 03)
+  1. The origin of this software must not be misrepresented; you must not claim that you 
+  wrote the original software. If you use this software in a product, an acknowledgment 
+  in the product documentation would be appreciated but is not required.
 
-### Controls
+  2. Altered source versions must be plainly marked as such, and must not be misrepresented
+  as being the original software.
 
-Keyboard:
- - $(Game Control 01)
- - $(Game Control 02)
- - $(Game Control 03)
-
-### Screenshots
-
-_TODO: Show your game to the world, animated GIFs recommended!._
-
-### Developers
-
- - $(Developer 01) - $(Role/Tasks Developed)
- - $(Developer 02) - $(Role/Tasks Developed)
- - $(Developer 03) - $(Role/Tasks Developed)
-
-### Links
-
- - YouTube Gameplay: $(YouTube Link)
- - itch.io Release: $(itch.io Game Page)
- - Steam Release: $(Steam Game Page)
-
-### License
-
-This game sources are licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
-
-$(Additional Licenses)
-
-*Copyright (c) $(Year) $(User Name) ($(User Twitter/GitHub Name))*
+  3. This notice may not be removed or altered from any source distribution.
