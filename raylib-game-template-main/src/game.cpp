@@ -16,6 +16,8 @@
  ********************************************************************************************/
 
 #include "raylib.h"
+#include <iostream>
+#include <string>
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -34,6 +36,11 @@ int main(void) {
   int isCursorHidden = 0;
 
   SetTargetFPS(60); // Set our game to run at 60 frames-per-second
+
+  Image bkgrnd = LoadImage("src/resources/RayLibTest/01_000.png");
+  Texture2D texture = LoadTextureFromImage(bkgrnd);
+  UnloadImage(bkgrnd);
+
   //---------------------------------------------------------------------------------------
 
   // Main game loop
@@ -72,19 +79,21 @@ int main(void) {
     // Draw
     //----------------------------------------------------------------------------------
     BeginDrawing();
-
     ClearBackground(RAYWHITE);
-
+    DrawTexture(texture, 0, 0, WHITE);
     DrawCircleV(ballPosition, 40, ballColor);
 
     DrawText("move ball with mouse and click mouse button to change color", 10,
              10, 20, DARKGRAY);
     DrawText("Press 'H' to toggle cursor visibility", 10, 30, 20, DARKGRAY);
+    const std::string test = std::to_string(GetRenderWidth()) + " ; " +
+                             std::to_string(GetRenderHeight());
+    DrawText(test.c_str(), 10, 50, 20, DARKGRAY);
 
     if (isCursorHidden == 1)
-      DrawText("CURSOR HIDDEN", 20, 60, 20, RED);
+      DrawText("CURSOR HIDDEN", 20, 70, 20, RED);
     else
-      DrawText("CURSOR VISIBLE", 20, 60, 20, LIME);
+      DrawText("CURSOR VISIBLE", 20, 70, 20, LIME);
 
     EndDrawing();
     //----------------------------------------------------------------------------------
