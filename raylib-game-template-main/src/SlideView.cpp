@@ -11,8 +11,7 @@ SlideView::SlideView(string imagePath) : m_imagePath(imagePath) {}
 SlideView::~SlideView() {
   for (map<SLIDE_STRUCT>::iterator it = m_slideMap.begin();
        it != m_slideMap.end(); ++it) {
-    //(it->first)->rmSlideMap(*this);
-    cout << "salut";
+    (it->first)->rmSlideMap(*this);
   }
 }
 
@@ -20,9 +19,11 @@ map<SLIDE_STRUCT> SlideView::getSlideMap() const { return m_slideMap; }
 
 string SlideView::getSlideImagePath() const { return m_imagePath; }
 
-vector<SlideView *> SlideView::getPriorityList() { return m_priorityList; }
+vector<SlideView *> SlideView::getPriorityList() const {
+  return m_priorityList;
+}
 
-void SlideView::print(ostream &flux) {
+void SlideView::print(ostream &flux) const {
   flux << "Image path : " << m_imagePath << endl << endl;
   this->getPriorityList();
   for (long unsigned int i = 0; i < m_priorityList.size(); ++i) {
@@ -31,7 +32,6 @@ void SlideView::print(ostream &flux) {
          << m_slideMap.find(m_priorityList[i])->second.getPriority() << endl;
   }
 }
-
 void SlideView::addSlideMap(pair<SLIDE_STRUCT> slide) {
   m_slideMap.insert(slide);
   m_priorityList.push_back(slide.first);
@@ -49,15 +49,22 @@ void SlideView::rmSlideMap(SlideView &slide) {
 }
 
 void SlideView::link(std::pair<SLIDE_STRUCT> slide, ClicZone cliczone) {
-  m_slideMap.insert(slide);
+  this->addSlideMap(slide);
   slide.first->addSlideMap(pair<SLIDE_STRUCT>(this, cliczone));
 }
 
 void SlideView::unLink(SlideView *slide) {
-  m_slideMap.erase(slide);
+  this->rmSlideMap(*slide);
   slide->rmSlideMap(*this);
 }
-// bool SlideView::isInZone(Vector2 touchPosition) {}
+
+SlideView *SlideView::getSlideViewTargerted(Vector2 touchPosition) const {
+  for (unsigned int i = 0; i < m_priorityList.size(); ++i) {
+    if (m_slideMap.find(m_priorityList[i])->second.isInZone(touchPosition))
+      return m_priorityList[i];
+  }
+  return nullptr;
+}
 
 void SlideView::sortPriorityList() {
   SlideView *tmp;
@@ -89,7 +96,7 @@ ostream &operator<<(ostream &flux, SlideView &slide) {
   slide.print(flux);
   return flux;
 }
-
+/*
 int main() {
   SlideView *slide1 = new SlideView(
       "/home/gregoire/Documents/Script/C++/Projet0/raylib-game-template-main/"
@@ -107,9 +114,12 @@ int main() {
   ClicZone z1(zone, 2);
   ClicZone z2(zone, 1);
   ClicZone z3(zone, 10);
-  slide1->addSlideMap(pair<SLIDE_STRUCT>(slide2, z1));
-  slide1->addSlideMap(pair<SLIDE_STRUCT>(slide3, z2));
-  slide1->addSlideMap(pair<SLIDE_STRUCT>(slide4, z3));
+  slide1->link(pair<SLIDE_STRUCT>(slide2, z1), z1);
+  slide1->link(pair<SLIDE_STRUCT>(slide3, z2), z2);
+  slide1->link(pair<SLIDE_STRUCT>(slide4, z3), z3);
+  delete slide1;
+  delete slide3;
   delete slide2;
-  cout << *slide1;
+  delete slide4;
 }
+*/

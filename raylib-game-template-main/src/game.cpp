@@ -15,11 +15,18 @@
  *
  ********************************************************************************************/
 
+#include "FileTools.hpp"
+#include "SlideView.hpp"
 #include "raylib.h"
 #include <iostream>
 #include <string>
 
-//------------------------------------------------------------------------------------
+int getSlideID(std::string path) {
+  return std::stoi(path.substr(path.size() - 9, path.size() - 8));
+}
+int getSubSlideID(std::string path) {
+  return std::stoi(path.substr(path.size() - 6, path.size() - 4));
+} //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
 int main(void) {
@@ -37,7 +44,42 @@ int main(void) {
 
   SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 
-  Image bkgrnd = LoadImage("src/resources/RayLibTest/01_000.png");
+  ClicZone left_zone((Rectangle){0, 0, 384, 1080}, 0);
+  ClicZone right_zone((Rectangle){1920 - 384, 0, 1920, 1080}, 0);
+  ClicZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
+
+  std::vector<std::string> imagePath;
+  getFilesInDirectory("src/resources/RayLibTest/", imagePath);
+
+  std::vector<SlideView *> slides;
+  for (unsigned int i = 0; i < imagePath.size(); ++i) {
+    slides.push_back(new SlideView(imagePath[i]));
+  }
+
+  for (std::vector<SlideView *>::iterator it_p = slides.begin();
+       it_p != slides.end(); ++it_p) {
+    for (std::vector<SlideView *>::iterator it_s = slides.begin();
+         it_s != slides.end(); ++it_s) {
+      if (getSlideID((*it_p)->getSlideImagePath()) ==
+              getSlideID((*it_s)->getSlideImagePath()) + 1 ||
+          getSlideID((*it_p)->getSlideImagePath()) ==
+              getSlideID((*it_s)->getSlideImagePath()) - 1) {
+        if (getSubSlideID((*it_p)->getSlideImagePath()) == 0 &&
+            getSubSlideID((*it_s)->getSlideImagePath()) == 0) {
+          (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_s, forward_zone));
+        }
+        if (getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
+            getSubSlideID((*it_s)->getSlideImagePath()) == 180) {
+          (*it_s)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_p, forward_zone));
+        }
+      }
+    }
+  }
+
+  for (unsigned int i = 0; i < slides.size(); ++i) {
+  }
+
+  Image bkgrnd = LoadImage(slides[0]->getSlideImagePath().c_str());
   Texture2D texture = LoadTextureFromImage(bkgrnd);
   UnloadImage(bkgrnd);
 
@@ -58,43 +100,14 @@ int main(void) {
       }
     }
 
-    ballPosition = GetMousePosition();
+    // GettMousePosition();
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-      ballColor = MAROON;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
-      ballColor = LIME;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
-      ballColor = DARKBLUE;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE))
-      ballColor = PURPLE;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA))
-      ballColor = YELLOW;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD))
-      ballColor = ORANGE;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK))
-      ballColor = BEIGE;
-    //----------------------------------------------------------------------------------
 
-    // Draw
-    //----------------------------------------------------------------------------------
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
+      // Draw
+      //----------------------------------------------------------------------------------
+      BeginDrawing();
     DrawTexture(texture, 0, 0, WHITE);
-    DrawCircleV(ballPosition, 40, ballColor);
-
-    DrawText("move ball with mouse and click mouse button to change color", 10,
-             10, 20, DARKGRAY);
-    DrawText("Press 'H' to toggle cursor visibility", 10, 30, 20, DARKGRAY);
-    const std::string test = std::to_string(GetRenderWidth()) + " ; " +
-                             std::to_string(GetRenderHeight());
-    DrawText(test.c_str(), 10, 50, 20, DARKGRAY);
-
-    if (isCursorHidden == 1)
-      DrawText("CURSOR HIDDEN", 20, 70, 20, RED);
-    else
-      DrawText("CURSOR VISIBLE", 20, 70, 20, LIME);
-
     EndDrawing();
     //----------------------------------------------------------------------------------
   }

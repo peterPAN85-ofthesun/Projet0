@@ -12,7 +12,7 @@ void ClicZone::setPriority(unsigned const int priority) {
   m_priority = priority;
 }
 
-bool ClicZone::isInZone(Vector2 touchPosition) {
+bool ClicZone::isInZone(Vector2 touchPosition) const {
   return touchPosition.x > m_zone.x && touchPosition.x < m_zone.width &&
          touchPosition.y > m_zone.y && touchPosition.y < m_zone.height;
 }

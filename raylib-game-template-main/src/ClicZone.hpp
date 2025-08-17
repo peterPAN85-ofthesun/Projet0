@@ -14,7 +14,7 @@ public:
   unsigned int getPriority() const;
   void setPriority(unsigned const int);
 
-  bool isInZone(Vector2 touchPosition);
+  bool isInZone(Vector2 touchPosition) const;
 
 private:
   Rectangle m_zone;

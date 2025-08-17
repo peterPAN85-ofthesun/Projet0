@@ -19,15 +19,15 @@ public:
 
   std::map<SLIDE_STRUCT> getSlideMap() const;
   std::string getSlideImagePath() const;
-  std::vector<SlideView *> getPriorityList();
-  void print(std::ostream &flux);
+  std::vector<SlideView *> getPriorityList() const;
+  void print(std::ostream &flux) const;
 
   void addSlideMap(std::pair<SLIDE_STRUCT> slide);
   void rmSlideMap(SlideView &slide);
   void link(std::pair<SLIDE_STRUCT> slide, ClicZone cliczone);
   void unLink(SlideView *slide);
 
-  SlideView *getTheSlideViewTargerted(Vector2 touchPosition);
+  SlideView *getSlideViewTargerted(Vector2 touchPosition) const;
 
 protected:
   void sortPriorityList();
