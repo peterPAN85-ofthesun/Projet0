@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/cmake_install.cmake",
+		"/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

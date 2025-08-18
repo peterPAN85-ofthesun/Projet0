@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build",
+  "command": "/usr/bin/c++   -I/usr/include -o CMakeFiles/Project0.dir/src/ClicZone.cpp.o -c /home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/ClicZone.cpp",
+  "file": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/ClicZone.cpp",
+  "output": "CMakeFiles/Project0.dir/src/ClicZone.cpp.o"
+},
+{
+  "directory": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build",
+  "command": "/usr/bin/c++   -I/usr/include -o CMakeFiles/Project0.dir/src/SlideView.cpp.o -c /home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/SlideView.cpp",
+  "file": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/SlideView.cpp",
+  "output": "CMakeFiles/Project0.dir/src/SlideView.cpp.o"
+},
+{
+  "directory": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build",
+  "command": "/usr/bin/c++   -I/usr/include -o CMakeFiles/Project0.dir/src/game.cpp.o -c /home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/game.cpp",
+  "file": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/game.cpp",
+  "output": "CMakeFiles/Project0.dir/src/game.cpp.o"
+},
+{
+  "directory": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build",
+  "command": "/usr/bin/c++   -I/usr/include -o CMakeFiles/Project0.dir/src/getFilesInDirectory.cpp.o -c /home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/getFilesInDirectory.cpp",
+  "file": "/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/src/getFilesInDirectory.cpp",
+  "output": "CMakeFiles/Project0.dir/src/getFilesInDirectory.cpp.o"
+}
+]
