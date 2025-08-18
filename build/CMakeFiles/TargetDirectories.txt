@@ -1,5 +1,0 @@
-/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/CMakeFiles/Project0.dir
-/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/CMakeFiles/edit_cache.dir
-/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/CMakeFiles/rebuild_cache.dir
-/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/src/CMakeFiles/edit_cache.dir
-/home/gregoire/Documents/Script/C++/Project0/raylib-game-template-main/build/src/CMakeFiles/rebuild_cache.dir

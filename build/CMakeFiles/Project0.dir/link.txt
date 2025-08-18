@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Project0.dir/link.d CMakeFiles/Project0.dir/src/ClicZone.cpp.o CMakeFiles/Project0.dir/src/SlideView.cpp.o CMakeFiles/Project0.dir/src/game.cpp.o CMakeFiles/Project0.dir/src/getFilesInDirectory.cpp.o -o Project0/Project0  /usr/lib/libraylib.so -L/usr/lib -lraylib
