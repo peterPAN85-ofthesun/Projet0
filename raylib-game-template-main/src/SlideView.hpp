@@ -6,7 +6,6 @@
 #include "ClicZone.hpp"
 #include "raylib.h"
 #include <map>
-#include <ostream>
 #include <string>
 #include <utility>
 #include <vector>

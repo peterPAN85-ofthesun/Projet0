@@ -61,14 +61,15 @@ int main(void) {
     for (std::vector<SlideView *>::iterator it_s = slides.begin();
          it_s != slides.end(); ++it_s) {
       if (getSlideID((*it_p)->getSlideImagePath()) ==
-              getSlideID((*it_s)->getSlideImagePath()) - 1 &&
+              (getSlideID((*it_s)->getSlideImagePath()) - 1) &&
           getSubSlideID((*it_p)->getSlideImagePath()) == 0 &&
           getSubSlideID((*it_s)->getSlideImagePath()) == 0) {
         (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_s, forward_zone));
-      } else if (getSlideID((*it_p)->getSlideImagePath()) ==
-                     getSlideID((*it_s)->getSlideImagePath()) + 1 &&
-                 getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
-                 getSubSlideID((*it_s)->getSlideImagePath()) == 180) {
+      }
+      if (getSlideID((*it_p)->getSlideImagePath()) ==
+              (getSlideID((*it_s)->getSlideImagePath()) - 1) &&
+          getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
+          getSubSlideID((*it_s)->getSlideImagePath()) == 180) {
         (*it_s)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_p, forward_zone));
       }
 
@@ -87,10 +88,14 @@ int main(void) {
       }
     }
   }
+
   for (unsigned int i = 0; i < slides.size(); ++i) {
-    std::cout << *slides[i] << std::endl;
+    std::cout << slides[i]->getSlideImagePath() << "  ---  "
+              << getSlideID(slides[i]->getSlideImagePath()) << std::endl;
   }
+
   Image bkgrnd = LoadImage(slides[0]->getSlideImagePath().c_str());
+  SlideView *currentSlide = slides[0];
   Texture2D texture = LoadTextureFromImage(bkgrnd);
   UnloadImage(bkgrnd);
 
@@ -101,24 +106,23 @@ int main(void) {
   {
     // Update
     //----------------------------------------------------------------------------------
-    if (IsKeyPressed(KEY_H)) {
-      if (isCursorHidden == 0) {
-        HideCursor();
-        isCursorHidden = 1;
-      } else {
-        ShowCursor();
-        isCursorHidden = 0;
-      }
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+        currentSlide->getSlideViewTargerted(GetMousePosition())) {
+      currentSlide = currentSlide->getSlideViewTargerted(GetMousePosition());
+      bkgrnd = LoadImage(currentSlide->getSlideImagePath().c_str());
+      texture = LoadTextureFromImage(bkgrnd);
+      std::cout << *currentSlide << std::endl;
+      UnloadImage(bkgrnd);
     }
 
-    // GettMousePosition();
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-
-      // Draw
-      //----------------------------------------------------------------------------------
-      BeginDrawing();
+    // Draw
+    //----------------------------------------------------------------------------------
+    BeginDrawing();
     DrawTexture(texture, 0, 0, WHITE);
+    DrawText((std::to_string(GetMousePosition().x) + " ; " +
+              std::to_string(GetMousePosition().y))
+                 .c_str(),
+             20, 20, 60, GREEN);
     EndDrawing();
     //----------------------------------------------------------------------------------
   }
