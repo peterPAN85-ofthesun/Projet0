@@ -22,10 +22,10 @@
 #include <string>
 
 int getSlideID(std::string path) {
-  return std::stoi(path.substr(path.size() - 9, path.size() - 8));
+  return std::stoi(path.substr(path.size() - 10, path.size() - 9));
 }
 int getSubSlideID(std::string path) {
-  return std::stoi(path.substr(path.size() - 6, path.size() - 4));
+  return std::stoi(path.substr(path.size() - 7, path.size() - 4));
 } //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -61,24 +61,35 @@ int main(void) {
     for (std::vector<SlideView *>::iterator it_s = slides.begin();
          it_s != slides.end(); ++it_s) {
       if (getSlideID((*it_p)->getSlideImagePath()) ==
-              getSlideID((*it_s)->getSlideImagePath()) + 1 ||
-          getSlideID((*it_p)->getSlideImagePath()) ==
-              getSlideID((*it_s)->getSlideImagePath()) - 1) {
-        if (getSubSlideID((*it_p)->getSlideImagePath()) == 0 &&
-            getSubSlideID((*it_s)->getSlideImagePath()) == 0) {
-          (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_s, forward_zone));
-        }
-        if (getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
-            getSubSlideID((*it_s)->getSlideImagePath()) == 180) {
-          (*it_s)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_p, forward_zone));
+              getSlideID((*it_s)->getSlideImagePath()) - 1 &&
+          getSubSlideID((*it_p)->getSlideImagePath()) == 0 &&
+          getSubSlideID((*it_s)->getSlideImagePath()) == 0) {
+        (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_s, forward_zone));
+      } else if (getSlideID((*it_p)->getSlideImagePath()) ==
+                     getSlideID((*it_s)->getSlideImagePath()) + 1 &&
+                 getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
+                 getSubSlideID((*it_s)->getSlideImagePath()) == 180) {
+        (*it_s)->addSlideMap(std::pair<SLIDE_STRUCT>(*it_p, forward_zone));
+      }
+
+      if (getSlideID((*it_p)->getSlideImagePath()) ==
+          getSlideID((*it_s)->getSlideImagePath())) {
+        if ((getSubSlideID((*it_p)->getSlideImagePath()) == 0 &&
+             getSubSlideID((*it_s)->getSlideImagePath()) == 90) ||
+            (getSubSlideID((*it_p)->getSlideImagePath()) == 90 &&
+             getSubSlideID((*it_s)->getSlideImagePath()) == 180) ||
+            (getSubSlideID((*it_p)->getSlideImagePath()) == 180 &&
+             getSubSlideID((*it_s)->getSlideImagePath()) == 270) ||
+            (getSubSlideID((*it_p)->getSlideImagePath()) == 270 &&
+             getSubSlideID((*it_s)->getSlideImagePath()) == 0)) {
+          (*it_p)->link(std::pair<SLIDE_STRUCT>(*it_s, right_zone), left_zone);
         }
       }
     }
   }
-
   for (unsigned int i = 0; i < slides.size(); ++i) {
+    std::cout << *slides[i] << std::endl;
   }
-
   Image bkgrnd = LoadImage(slides[0]->getSlideImagePath().c_str());
   Texture2D texture = LoadTextureFromImage(bkgrnd);
   UnloadImage(bkgrnd);
