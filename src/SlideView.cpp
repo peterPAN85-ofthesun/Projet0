@@ -25,7 +25,6 @@ vector<SlideView *> SlideView::getPriorityList() const {
 
 void SlideView::print(ostream &flux) const {
   flux << "Image path : " << m_imagePath << endl << endl;
-  this->getPriorityList();
   for (long unsigned int i = 0; i < m_priorityList.size(); ++i) {
     flux << i << " : " << m_priorityList[i]->getSlideImagePath()
          << " ----[PRIORITY]-----> "
