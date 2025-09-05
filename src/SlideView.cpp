@@ -66,6 +66,14 @@ SlideView *SlideView::getSlideViewTargerted(Vector2 touchPosition) const {
   return nullptr;
 }
 
+const ClicZone *SlideView::getZoneTargeted(Vector2 touchPosition) const {
+  for (unsigned int i = 0; i < m_priorityList.size(); ++i) {
+    if (m_slideMap.find(m_priorityList[i])->second.isInZone(touchPosition))
+      return &(m_slideMap.find(m_priorityList[i])->second);
+  }
+  return nullptr;
+}
+
 void SlideView::sortPriorityList() {
   SlideView *tmp;
 

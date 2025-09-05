@@ -44,9 +44,9 @@ int main(void) {
 
   SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 
-  ClicZone left_zone((Rectangle){0, 0, 384, 1080}, 0);
-  ClicZone right_zone((Rectangle){1920 - 384, 0, 1920, 1080}, 0);
-  ClicZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
+  LeftZone left_zone((Rectangle){0, 0, 384, 1080}, 0);
+  RightZone right_zone((Rectangle){1920 - 384, 0, 1920, 1080}, 0);
+  IdleZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
 
   std::vector<std::string> imagePath;
   getFilesInDirectory("src/resources/RayLibTest/", imagePath);
@@ -99,6 +99,9 @@ int main(void) {
   Texture2D texture = LoadTextureFromImage(bkgrnd);
   UnloadImage(bkgrnd);
 
+  Image mouse = LoadImage(currentSlide->getZoneTargeted(GetMousePosition())
+                              ->getMouseIcon()
+                              .c_str());
   //---------------------------------------------------------------------------------------
 
   // Main game loop

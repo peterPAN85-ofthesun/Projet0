@@ -27,6 +27,7 @@ public:
   void unLink(SlideView *slide);
 
   SlideView *getSlideViewTargerted(Vector2 touchPosition) const;
+  const ClicZone *getZoneTargeted(Vector2 touchPosition) const;
 
 protected:
   void sortPriorityList();
