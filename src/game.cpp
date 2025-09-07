@@ -46,7 +46,7 @@ int main(void) {
 
   LeftZone left_zone((Rectangle){0, 0, 384, 1080}, 0);
   RightZone right_zone((Rectangle){1920 - 384, 0, 1920, 1080}, 0);
-  IdleZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
+  ForwardZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
   IdleZone none_zone((Rectangle){0, 0, 1920, 1080}, 1000);
 
   std::vector<std::string> imagePath;
@@ -109,8 +109,6 @@ int main(void) {
   // Main game loop
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
-    std::cout << GetMousePosition().x << " , " << GetMousePosition().y
-              << std::endl;
     // Update
     //----------------------------------------------------------------------------------
 
@@ -119,7 +117,7 @@ int main(void) {
       currentSlide = currentSlide->getSlideViewTargerted(GetMousePosition());
       bkgrnd = LoadImage(currentSlide->getSlideImagePath().c_str());
       texture = LoadTextureFromImage(bkgrnd);
-      // std::cout << *currentSlide << std::endl;
+      std::cout << currentSlide << std::endl;
       UnloadImage(bkgrnd);
     }
 

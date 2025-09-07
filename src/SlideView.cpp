@@ -24,10 +24,14 @@ vector<SlideView *> SlideView::getPriorityList() const {
 }
 
 void SlideView::print(ostream &flux) const {
+  std::string path;
   flux << "Image path : " << m_imagePath << endl << endl;
   for (long unsigned int i = 0; i < m_priorityList.size(); ++i) {
-    flux << i << " : " << m_priorityList[i]->getSlideImagePath()
-         << " ----[PRIORITY]-----> "
+    if (!m_priorityList[i])
+      path = "NONE";
+    else
+      path = m_priorityList[i]->getSlideImagePath();
+    flux << i << " : " << path << " ----[PRIORITY]-----> "
          << m_slideMap.find(m_priorityList[i])->second.getPriority() << endl;
   }
 }
@@ -99,8 +103,8 @@ bool operator<(pair<SLIDE_STRUCT> const &a, pair<SLIDE_STRUCT> const &b) {
 bool operator>(pair<SLIDE_STRUCT> const &a, pair<SLIDE_STRUCT> const &b) {
   return a.second > b.second;
 }
-ostream &operator<<(ostream &flux, SlideView &slide) {
-  slide.print(flux);
+ostream &operator<<(ostream &flux, SlideView *slide) {
+  slide->print(flux);
   return flux;
 }
 /*

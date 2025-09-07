@@ -28,7 +28,13 @@ IdleZone ::IdleZone() : ClicZone() {};
 IdleZone ::IdleZone(Rectangle const zone, unsigned int const priority)
     : ClicZone(zone, priority) {
   m_mouseIcon = "src/resources/Cursor/idle.png";
-};
+}
+
+ForwardZone ::ForwardZone() : ClicZone() {};
+ForwardZone ::ForwardZone(Rectangle const zone, unsigned int const priority)
+    : ClicZone(zone, priority) {
+  m_mouseIcon = "src/resources/Cursor/idle.png";
+}
 
 RightZone ::RightZone() : ClicZone() {}
 RightZone ::RightZone(Rectangle const zone, unsigned int const priority)

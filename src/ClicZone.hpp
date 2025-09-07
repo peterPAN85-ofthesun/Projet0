@@ -32,6 +32,12 @@ public:
   IdleZone(Rectangle const zone, unsigned int const priority);
 };
 
+class ForwardZone : public ClicZone {
+public:
+  ForwardZone();
+  ForwardZone(Rectangle const zone, unsigned int const priority);
+};
+
 class RightZone : public ClicZone {
 public:
   RightZone();
@@ -43,4 +49,5 @@ public:
   LeftZone();
   LeftZone(Rectangle const zone, unsigned int const priority);
 };
+
 #endif // !CLICZONE_HPP

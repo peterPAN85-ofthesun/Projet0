@@ -42,5 +42,5 @@ bool operator<(std::pair<SLIDE_STRUCT> const &a,
                std::pair<SLIDE_STRUCT> const &b);
 bool operator>(std::pair<SLIDE_STRUCT> const &a,
                std::pair<SLIDE_STRUCT> const &b);
-std::ostream &operator<<(std::ostream &flux, SlideView &slide);
+std::ostream &operator<<(std::ostream &flux, SlideView *slide);
 #endif //! SLIDEVIEW_HPP
