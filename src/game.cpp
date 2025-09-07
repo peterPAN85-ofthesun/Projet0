@@ -90,12 +90,12 @@ int main(void) {
     }
     (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(nullptr, none_zone));
   }
-
-  for (unsigned int i = 0; i < slides.size(); ++i) {
-    std::cout << slides[i]->getSlideImagePath() << "  ---  "
-              << getSlideID(slides[i]->getSlideImagePath()) << std::endl;
-  }
-
+  /*
+    for (unsigned int i = 0; i < slides.size(); ++i) {
+      std::cout << slides[i]->getSlideImagePath() << "  ---  "
+                << getSlideID(slides[i]->getSlideImagePath()) << std::endl;
+    }
+  */
   Image bkgrnd = LoadImage(slides[0]->getSlideImagePath().c_str());
   SlideView *currentSlide = slides[0];
   Texture2D texture = LoadTextureFromImage(bkgrnd);
@@ -104,9 +104,6 @@ int main(void) {
   Image mouse = LoadImage(currentSlide->getZoneTargeted(GetMousePosition())
                               ->getMouseIcon()
                               .c_str());
-
-  std::cout << GetMousePosition().x << " , " << GetMousePosition().y
-            << std::endl;
   //---------------------------------------------------------------------------------------
 
   // Main game loop
@@ -121,7 +118,7 @@ int main(void) {
       currentSlide = currentSlide->getSlideViewTargerted(GetMousePosition());
       bkgrnd = LoadImage(currentSlide->getSlideImagePath().c_str());
       texture = LoadTextureFromImage(bkgrnd);
-      std::cout << *currentSlide << std::endl;
+      // std::cout << *currentSlide << std::endl;
       UnloadImage(bkgrnd);
     }
 
