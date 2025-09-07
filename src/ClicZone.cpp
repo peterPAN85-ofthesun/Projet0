@@ -13,8 +13,8 @@ void ClicZone::setPriority(unsigned const int priority) {
 }
 std::string ClicZone::getMouseIcon() const { return m_mouseIcon; }
 bool ClicZone::isInZone(Vector2 touchPosition) const {
-  return touchPosition.x > m_zone.x && touchPosition.x < m_zone.width &&
-         touchPosition.y > m_zone.y && touchPosition.y < m_zone.height;
+  return touchPosition.x >= m_zone.x && touchPosition.x <= m_zone.width &&
+         touchPosition.y >= m_zone.y && touchPosition.y <= m_zone.height;
 }
 
 bool operator<(ClicZone const &a, ClicZone const &b) {

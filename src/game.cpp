@@ -47,6 +47,7 @@ int main(void) {
   LeftZone left_zone((Rectangle){0, 0, 384, 1080}, 0);
   RightZone right_zone((Rectangle){1920 - 384, 0, 1920, 1080}, 0);
   IdleZone forward_zone((Rectangle){385, 0, 1920 - 385, 1080}, 0);
+  IdleZone none_zone((Rectangle){0, 0, 1920, 1080}, 1000);
 
   std::vector<std::string> imagePath;
   getFilesInDirectory("src/resources/RayLibTest/", imagePath);
@@ -87,6 +88,7 @@ int main(void) {
         }
       }
     }
+    (*it_p)->addSlideMap(std::pair<SLIDE_STRUCT>(nullptr, none_zone));
   }
 
   for (unsigned int i = 0; i < slides.size(); ++i) {
@@ -102,13 +104,18 @@ int main(void) {
   Image mouse = LoadImage(currentSlide->getZoneTargeted(GetMousePosition())
                               ->getMouseIcon()
                               .c_str());
+
+  std::cout << GetMousePosition().x << " , " << GetMousePosition().y
+            << std::endl;
   //---------------------------------------------------------------------------------------
 
   // Main game loop
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
-    // Update
+    std::cout << GetMousePosition().x << " , " << GetMousePosition().y
+              << std::endl; // Update
     //----------------------------------------------------------------------------------
+
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
         currentSlide->getSlideViewTargerted(GetMousePosition())) {
       currentSlide = currentSlide->getSlideViewTargerted(GetMousePosition());
