@@ -110,7 +110,8 @@ int main(void) {
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
     std::cout << GetMousePosition().x << " , " << GetMousePosition().y
-              << std::endl; // Update
+              << std::endl;
+    // Update
     //----------------------------------------------------------------------------------
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
